@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Steam Group Database</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body class="bg-dark text-light">
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h1>Steam Group Database</h1>
+                        <p>Search Steam Groups by name, url, status, or clan tag.</p>
+                    </div>
+                </div>
+
+                <div class="row row-cols-lg g-3 align-items-center">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" autocomplete="off">
+
+                            <select class="form-select-sm" id="searchBy">
+                                <option value="name">Name</option>
+                                <option value="slug">URL</option>
+                                <option value="status">Status</option>
+                                <option value="tag">Clan Tag</option>
+                            </select>
+
+                            <button class="btn btn-success" id="searchBtn" type="button">Search</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div id="search-results" class="row row-cols-5 g-4"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" id="previous" href="javascript:void()">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" id="curpage" href="javascript:void()">1</a></li>
+                                <li class="page-item"><a class="page-link" id="next" href="javascript:void()">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+            let page = 0;
+            let curSearchTerm = "";
+            const baseURL = `https://sgroupdb.herokuapp.com`;
+
+            function escape(str) {
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+            }
+
+            function showGroups(data) {
+                $("#search-results").html("");
+                data.forEach(group => {
+                    $("#search-results").append(`
+                        <div class="col">
+                            <div class="card bg-light text-dark g-0">
+                                <img src="${group.avatar}" class="card-img-top" />
+                                <div class="card-body">
+                                    <h5 class="card-title">${escape(group.name)}</h5>
+                                    <p class="card-text"><b>Tag:</b> ${escape(group.tag)}</p>
+                                    <p class="card-text"><b>URL:</b> <a href="https://steamcommunity.com/groups/${group.slug}" target="_blank">${group.slug}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    `);
+                });
+            }
+
+            $("input").keyup(function(e) {
+                if (e.keyCode == 13) {
+                    $("#searchBtn").click();
+                }
+            });
+
+            $("#searchBtn").click(e => {
+                e.preventDefault();
+
+                $("#search-results").html("<div class='spinner-border text-primary' role='status'></div>");
+
+                const searchBy = $("#searchBy").val();
+                const searchTerm = $("input[type='search']").val();
+
+                if(curSearchTerm.toLowerCase().trim() != searchTerm.toLowerCase().trim()) {
+                    page = 0;
+                    curSearchTerm = searchTerm.toLowerCase().trim();
+                    $("#curpage").html("1");
+                    $("#previous").parent().hasClass("disabled") ? null : $("#previous").parent().addClass("disabled");
+                }
+                
+                if(searchTerm.trim().length > 0) {
+                    $.getJSON(`${baseURL}/api/groups/search/${searchBy}?search=${encodeURIComponent(searchTerm)}&page=${page}`, (data) => { showGroups(data) }).fail((data) => {
+                        $("#search-results").html(`<div class="alert alert-danger" role="alert">${data.responseJSON.error}</div>`);
+                    });
+                } else {
+                    $.getJSON(`${baseURL}/api/groups/all/${page}`, (data) => { showGroups(data) }).fail((data) => {
+                        $("#search-results").html(`<div class="alert alert-danger" role="alert">${data.responseJSON.error}</div>`);
+                    });
+                }
+            });
+
+            $("#next").click(e => {
+                e.preventDefault();
+                page++;
+                $("#searchBtn").click();
+                $("#previous").parent().removeClass("disabled");
+                $("#curpage").html(page+1);
+            });
+
+            $("#previous").click(e => {
+                e.preventDefault();
+                page--;
+                $("#searchBtn").click();
+                if(page == 0) {
+                    $("#previous").parent().addClass("disabled");
+                }
+                $("#curpage").html(page+1);
+            });
+
+            $("#searchBtn").click();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+    "manifest_version": 3,
+    "name": "Steam Group DB",
+    "description": "A database of Steam groups",
+    "version": "1.0.0",
+    "content_scripts": [
+        {
+            "matches": ["*://steamcommunity.com/groups/*"],
+            "js": ["groupsdb.js"]
+        }
+    ],
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "*://steamcommunity.com/*",
+        "http://localhost:11074/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
+}
