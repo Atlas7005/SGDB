@@ -1,6 +1,7 @@
 # Steam Group Database (SGDB)
 
-A database made for making browsing Steam groups easy.## Usage
+A database made for making browsing Steam groups easy.
+## Usage
 
 You can use it by checking out the Github [web page for it](https://atlas7005.github.io/SGDB/) or by using the [API](https://atlasdev.stoplight.io/docs/steam-group-database).
 ## Extension
