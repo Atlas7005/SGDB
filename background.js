@@ -3,8 +3,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const { slug } = request;
         if(!slug) return sendResponse({ error: "Slug is required" });
 
-        fetch("https://sgroupdb.herokuapp.com/api/groups/"+slug.toLowerCase(), {
-            method: "POST"
+        fetch("https://sgroupdb.herokuapp.com/api/groups/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                slug: slug.toLowerCase()
+            })
         }).then(response => {
             return response.json();
         }).then(data => {
