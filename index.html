@@ -8,20 +8,20 @@
         <!-- Primary Meta Tags -->
         <title>Steam Group Database</title>
         <meta name="title" content="Steam Group Database">
-        <meta name="description" content="A database made for making browsing Steam groups easy.">
+        <meta name="description" content="Search Steam Groups easily by their name, clan tag, url, or status.">
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://atlas7005.github.io/SGDB/">
         <meta property="og:title" content="Steam Group Database">
-        <meta property="og:description" content="A database made for making browsing Steam groups easy.">
+        <meta property="og:description" content="Search Steam Groups easily by their name, clan tag, url, or status.">
         <meta property="og:image" content="https://atlas7005.github.io/SGDB/meta.png">
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="https://atlas7005.github.io/SGDB/">
         <meta property="twitter:title" content="Steam Group Database">
-        <meta property="twitter:description" content="A database made for making browsing Steam groups easy.">
+        <meta property="twitter:description" content="Search Steam Groups easily by their name, clan tag, url, or status.">
         <meta property="twitter:image" content="https://atlas7005.github.io/SGDB/meta.png">
         <title>Steam Group Database</title>
 
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-12">
                         <h1>Steam Group Database</h1>
-                        <p>Search Steam Groups by name, url, status, or clan tag.</p>
+                        <p>Search Steam Groups easily by their name, clan tag, url, or status.</p>
                     </div>
                 </div>
 
@@ -143,12 +143,12 @@
                     $("#search-results").append(`
                         <div class="col">
                             <div class="card bg-light text-dark g-0">
-                                <img src="${group.avatar}" class="card-img-top" />
+                                <img src="${group.avatar}" alt="${group.slug.trim()}" class="card-img-top" />
                                 <div class="card-body">
                                     <h5 class="card-title">${escape(group.name)}</h5>
                                     <p class="card-text mb-"><b>Tag:</b> ${escape(group.tag)}</p>
                                     <p class="card-text"><b>Status:</b> <i class="status ${group.status}"></i> ${group.status.charAt(0).toUpperCase() + group.status.slice(1)}</p>
-                                    <p class="card-text"><b>URL:</b> <a href="https://steamcommunity.com/groups/${group.slug}" target="_blank">${group.slug}</a></p>
+                                    <p class="card-text"><b>URL:</b> <a href="https://steamcommunity.com/groups/${group.slug.trim()}" target="_blank">${group.slug.trim()}</a></p>
                                 </div>
                             </div>
                         </div>
