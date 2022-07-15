@@ -119,7 +119,7 @@
             const baseURL = `https://sgroupdb.herokuapp.com`;
 
             $.getJSON(`${baseURL}/api/groups/count`, (data) => {
-                $("input[type=search]").attr("placeholder", `Search ${data.count} Groups.`);
+                $("input[type=search]").attr("placeholder", `Search ${data.count.toLocaleString()} Groups.`);
             });
 
             function escape(str) {
