@@ -118,8 +118,8 @@
             let curSearchTerm = "";
             const baseURL = `https://sgroupdb.herokuapp.com`;
 
-            $.getJSON(`${baseURL}/api/groups/count`, (count) => {
-                $("input[type=search]").attr("placeholder", `Search ${count} Groups.`);
+            $.getJSON(`${baseURL}/api/groups/count`, (data) => {
+                $("input[type=search]").attr("placeholder", `Search ${data.count} Groups.`);
             });
 
             function escape(str) {
