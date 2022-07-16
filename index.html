@@ -180,7 +180,7 @@
                 e.preventDefault();
 
                 $("#next").parent().removeClass("disabled");
-                $("#previous").parent().removeClass("disabled");
+                if(page > 0 ) $("#previous").parent().removeClass("disabled");
 
                 $("#search-results").html("<div class='spinner-border text-primary' role='status'></div>");
 
