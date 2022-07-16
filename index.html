@@ -5,25 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification" content="9vRSZKbiGcfUpFYjaI9lyO6YjQqUAAZepySyzGKOwAo" />
-        <!-- Primary Meta Tags -->
         <title>Steam Group Database</title>
         <meta name="title" content="Steam Group Database">
         <meta name="description" content="Search Steam Groups easily by their name, clan tag, url, or status.">
-
-        <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://atlas7005.github.io/SGDB/">
         <meta property="og:title" content="Steam Group Database">
         <meta property="og:description" content="Search Steam Groups easily by their name, clan tag, url, or status.">
         <meta property="og:image" content="https://atlas7005.github.io/SGDB/meta.png">
-
-        <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content="https://atlas7005.github.io/SGDB/">
         <meta property="twitter:title" content="Steam Group Database">
         <meta property="twitter:description" content="Search Steam Groups easily by their name, clan tag, url, or status.">
         <meta property="twitter:image" content="https://atlas7005.github.io/SGDB/meta.png">
-        <title>Steam Group Database</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
@@ -51,6 +45,22 @@
             .status.closed {
                 background-color: rgb(255, 0, 0);
             }
+
+            .rounded-left-top {
+                border-top-left-radius: var(--bs-border-radius)!important;
+            }
+
+            .rounded-left-bottom {
+                border-bottom-left-radius: var(--bs-border-radius)!important;
+            }
+
+            .rounded-right-top {
+                border-top-right-radius: var(--bs-border-radius)!important;
+            }
+
+            .rounded-right-bottom {
+                border-bottom-right-radius: var(--bs-border-radius)!important;
+            }
         </style>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -73,20 +83,20 @@
                     </div>
                 </div>
 
-                <div class="row row-cols-lg g-3 align-items-center">
+                <div class="row row-cols-lg g-3 align-items-center mb-3">
                     <div class="col-12">
-                        <div class="input-group mb-3">
-                            <input type="search" class="form-control" placeholder="Search" aria-label="Search" autocomplete="off">
+                        <div class="input-group">
+                            <input type="search" class="form-control flex-fill rounded-0 rounded-left-top" placeholder="Search" aria-label="Search" autocomplete="off">
 
-                            <select class="form-select-sm" id="searchBy">
+                            <select class="form-select-md flex-fill rounded-right-top" id="searchBy">
                                 <option value="name">Name</option>
                                 <option value="slug">URL</option>
                                 <option value="status">Status</option>
                                 <option value="tag">Clan Tag</option>
                             </select>
 
-                            <button class="btn btn-success" id="searchBtn" type="button">Search</button>
                         </div>
+                        <button class="btn btn-success w-100 rounded-0 rounded-bottom" id="searchBtn" type="button">Search</button>
                     </div>
                 </div>
                 
