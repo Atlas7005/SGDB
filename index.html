@@ -164,6 +164,10 @@
                         </div>
                     `);
                 });
+
+                if(data.length < 10) {
+                    $("#next").parent().addClass("disabled");
+                }
             }
 
             $("input").keyup(function(e) {
@@ -175,6 +179,9 @@
             $("#searchBtn").click(e => {
                 e.preventDefault();
 
+                $("#next").parent().removeClass("disabled");
+                $("#previous").parent().removeClass("disabled");
+
                 $("#search-results").html("<div class='spinner-border text-primary' role='status'></div>");
 
                 const searchBy = $("#searchBy").val();
@@ -185,6 +192,7 @@
                     curSearchTerm = searchTerm.toLowerCase().trim();
                     $("#curpage").html("1");
                     $("#previous").parent().hasClass("disabled") ? null : $("#previous").parent().addClass("disabled");
+                    $("#next").parent().hasClass("disabled") ? $("#next").parent().addClass("disabled") : null;
                 }
                 
                 if(searchTerm.trim().length > 0) {
