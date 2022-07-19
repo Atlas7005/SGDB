@@ -3,7 +3,7 @@
 A database made for making browsing Steam groups easy.
 ## Usage
 
-You can use it by checking out the Github [web page for it](https://atlas7005.github.io/SGDB/) or by using the [API](https://atlasdev.stoplight.io/docs/steam-group-database).
+You can use it by checking out the Github [web page for it](https://steamgroups.com/) or by using the [API](https://atlasdev.stoplight.io/docs/steam-group-database).
 ## Extension
 The Browser extension is made to help get more groups into the database.   
 Whenever a user with the browser extension goes to a url like `https://steamcommunity.com/groups/atlassfans` it will send a request to the Database to add the Steam group.
