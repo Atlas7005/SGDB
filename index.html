@@ -110,9 +110,9 @@
                     <div class="col-12">
                         <nav>
                             <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" id="previous" href="javascript:void()">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" id="curpage" href="javascript:void()">1</a></li>
-                                <li class="page-item"><a class="page-link" id="next" href="javascript:void()">Next</a></li>
+                                <li class="page-item disabled"><a class="page-link" title="Previous Page" id="previous" href="javascript:void()">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" title="Current Page" id="curpage" href="javascript:void()">1</a></li>
+                                <li class="page-item"><a class="page-link" title="Next Page" id="next" href="javascript:void()">Next</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -123,11 +123,11 @@
         <div class="container-fluid bg-light text-dark">
             <footer class="py-3">
                 <ul class="nav justify-content-center border-bottom pb-2 mb-3 fs-3">
-                    <li class="nav-item"><a href="https://github.com/Atlas7005/SGDB/" target="_blank" class="nav-link px-2 text-dark"><i class="bi bi-github"></i></a></li>
-                    <li class="nav-item"><a href="https://steamcommunity.com/groups/steamgroupdb/" target="_blank" class="nav-link px-2 text-dark"><i class="bi bi-steam"></i></a></li>
-                    <li class="nav-item"><a href="mailto:atlasdevelopmentbusiness@gmail.com" target="_blank" class="nav-link px-2 text-dark"><i class="bi bi-envelope-fill"></i></a></li>
+                    <li class="nav-item"><a href="https://github.com/Atlas7005/SGDB/" title="The site's publicly available source code." target="_blank" class="nav-link px-2 text-dark"><i class="bi bi-github"></i></a></li>
+                    <li class="nav-item"><a href="https://steamcommunity.com/groups/steamgroupdb/" title="The official Steam Group." target="_blank" class="nav-link px-2 text-dark"><i class="bi bi-steam"></i></a></li>
+                    <li class="nav-item"><a href="mailto:atlasdevelopmentbusiness@gmail.com" title="A mail to address to contact us." target="_blank" class="nav-link px-2 text-dark"><i class="bi bi-envelope-fill"></i></a></li>
                 </ul>
-                <p class="text-center">© 2022 <a href="https://github.com/atlas7005/" target="_blank" class="text-dark text-decoration-none">Atlas Development</a></p>
+                <p class="text-center">© 2022 <a href="https://github.com/atlas7005/" title="Author of the project." target="_blank" class="text-dark text-decoration-none">Atlas Development</a></p>
             </footer>
         </div>
 
@@ -158,7 +158,7 @@
                                     <h5 class="card-title">${escape(group.name)}</h5>
                                     <p class="card-text mb-"><b>Tag:</b> ${escape(group.tag)}</p>
                                     <p class="card-text"><b>Status <i class="bi bi-info-circle" style="font-size: 1em;" title="Open&#013;An open group means anyone can join at any time.&#013;&#013;Restricted&#013;A restricted group requires you to request to join.&#013;&#013;Closed&#013;A closed group is a group where you need an invite."></i> :</b> <i class="status ${group.status}"></i> ${group.status.charAt(0).toUpperCase() + group.status.slice(1)}</p>
-                                    <p class="card-text"><b>URL:</b> <a href="https://steamcommunity.com/groups/${group.slug.trim()}" target="_blank">${group.slug.trim()}</a></p>
+                                    <p class="card-text"><b>URL:</b> <a href="https://steamcommunity.com/groups/${group.slug.trim()}" title="${group.slug.trim()}" target="_blank">${group.slug.trim()}</a></p>
                                 </div>
                             </div>
                         </div>
